@@ -1,5 +1,6 @@
 <script>
 	import Spinner from "$lib/Spinner.svelte";
+	import Card from "$lib/Card.svelte";
 
 	let checks = [
 		{ name: "Firewall", status: "loading" },
@@ -24,6 +25,10 @@
 	}, 1600);
 
 </script>
+
+<Card width="100%" style="background-color: #ff5c5c; border-color: #ff2424; color: black;">
+	<b>EasyGuard 2.0: Startseite zeigt momentan Zufallswerte an.</b>
+</Card>
 
 <div id="status">
 	{#if checks.some(({ status }) => status === "fail")}

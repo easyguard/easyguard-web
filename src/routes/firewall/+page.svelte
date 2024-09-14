@@ -1,9 +1,8 @@
 <script lang="ts">
+    import { API_ROOT } from "$lib/consts";
 	import RulesCard from "$lib/firewall/RulesCard.svelte";
 	import { onMount } from "svelte";
 
-	const API_ROOT = "http://10.10.99.1:8080/api/";
-	
 	let newRule = {
 		port: 1,
 		protocol: "tcp"

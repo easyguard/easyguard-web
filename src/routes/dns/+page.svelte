@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Card from "$lib/Card.svelte";
 	import Chip from "$lib/Chip.svelte";
+    import { API_ROOT } from "$lib/consts";
 	import { onMount } from "svelte";
 
-	const API_ROOT = "http://10.10.99.1:8080/api/";
-	let dns: { protectionLevel: "normal" | "high" | "aggressive", tif: boolean, badware: boolean, nrd: boolean, extra: boolean } = { protectionLevel: "high", tif: true, badware: true, nrd: true, extra: true };
+	let dns: { protectionLevel: "normal" | "high" | "aggressive", tif: boolean, badware: boolean, nrd: boolean, extra: boolean } = { protectionLevel: "normal", tif: true, badware: true, nrd: true, extra: false };
 
 	async function fetchDNS() {
 		await fetch(API_ROOT + "dns")
@@ -44,7 +44,7 @@
 	}
 
 	onMount(() => {
-		fetchDNS();
+		// fetchDNS();
 	})
 </script>
 
@@ -78,7 +78,8 @@
 </Card> -->
 
 <Card width="100%" style="background-color: #ff5c5c; border-color: #ff2424; color: black;">
-	Betafunktion: Diese Funktion ist noch in der Entwicklung und kann Fehler enthalten.
+	Betafunktion: Diese Funktion ist noch in der Entwicklung und kann Fehler enthalten.<br>
+	<b>EasyGuard 2.0: Diese Funktion ist noch nicht einstellbar!!</b>
 </Card>
 
 <Card width="100%">
@@ -88,7 +89,7 @@
 	</div>
 	<div style="margin-top: 10px;">
 		<span>Schutzlevel:</span>
-		<select id="protectionLevel" on:change={selectChange}>
+		<select id="protectionLevel" on:change={selectChange} disabled>
 			<option value="normal" selected={dns.protectionLevel == "normal"}>Normal</option>
 			<option value="high" selected={dns.protectionLevel == "high"}>Hoch (empfohlen)</option>
 			<option value="aggressive" selected={dns.protectionLevel == "aggressive"}>Aggressiv</option>
@@ -96,19 +97,19 @@
 	</div>
 	<span>Zusatz:</span>
 	<div>
-		<input type="checkbox" id="tif" checked={dns.tif} on:change={checkboxChange}>
+		<input type="checkbox" id="tif" checked={dns.tif} on:change={checkboxChange} disabled>
 		<label for="tif">Thread Intelligence Feeds (empfohlen)</label>
 	</div>
 	<div>
-		<input type="checkbox" id="badware" checked={dns.badware} on:change={checkboxChange}>
+		<input type="checkbox" id="badware" checked={dns.badware} on:change={checkboxChange} disabled>
 		<label for="badware">Badware Hoster (empfohlen)</label>
 	</div>
 	<div>
-		<input type="checkbox" id="nrd" checked={dns.nrd} on:change={checkboxChange}>
+		<input type="checkbox" id="nrd" checked={dns.nrd} on:change={checkboxChange} disabled>
 		<label for="nrd">Newly Registered Domains (empfohlen)</label>
 	</div>
 	<div>
-		<input type="checkbox" id="extra" checked={dns.extra} on:change={checkboxChange}>
+		<input type="checkbox" id="extra" checked={dns.extra} on:change={checkboxChange} disabled>
 		<label for="extra">EasyGuard Extra (empfohlen)</label>
 	</div>
 	<!-- <div style="display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; margin-top: 10px;">
@@ -137,7 +138,7 @@
 		<svg width="40" height="40" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m8.086 18.611 5.996-14.004a1 1 0 0 1 1.878.677l-.04.11-5.996 14.004a1 1 0 0 1-1.878-.677l.04-.11 5.996-14.004L8.086 18.61Zm-5.793-7.318 4-4a1 1 0 0 1 1.497 1.32l-.083.094L4.414 12l3.293 3.293a1 1 0 0 1-1.32 1.498l-.094-.084-4-4a1 1 0 0 1-.083-1.32l.083-.094 4-4-4 4Zm14-4.001a1 1 0 0 1 1.32-.083l.093.083 4.001 4.001a1 1 0 0 1 .083 1.32l-.083.095-4.001 3.995a1 1 0 0 1-1.497-1.32l.084-.095L19.584 12l-3.293-3.294a1 1 0 0 1 0-1.414Z" fill="#ffffff"/></svg>
 		Extraeinträge (Fortgeschritten)
 	</div>
-	<textarea rows=18>
+	<textarea rows=18 disabled>
 </textarea>
 	<button>
 		<svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.75 3h-1A2.75 2.75 0 0 0 3 5.75v12.5A2.75 2.75 0 0 0 5.75 21H6v-6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 15v6h.25A2.75 2.75 0 0 0 21 18.25V8.286a3.25 3.25 0 0 0-.952-2.299l-2.035-2.035A3.25 3.25 0 0 0 15.75 3v4.5a2.25 2.25 0 0 1-2.25 2.25H9A2.25 2.25 0 0 1 6.75 7.5V3Z" fill="#ffffff"/><path d="M14.25 3v4.5a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75V3h6ZM16.5 21v-6a.75.75 0 0 0-.75-.75h-7.5a.75.75 0 0 0-.75.75v6h9Z" fill="#ffffff"/></svg>

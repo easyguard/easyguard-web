@@ -1,7 +1,14 @@
 <script>
+	import Card from "$lib/Card.svelte";
+
 	const controllerAdmin = "Max Mustermann";
 	const controllerIP = "123.123.123.123";
 </script>
+
+<Card width="100%" style="background-color: #ff5c5c; border-color: #ff2424; color: black;">
+	<b>EasyGuard 2.0: Diese Funktion ist noch nicht verfügbar!</b>
+	<span>Die Werte entsprechen aktuell nicht der Wahrheit!</span>
+</Card>
 
 <h2 style="margin: 0;">Diese EasyGuard-Firewall wird von einem externen Server verwaltet.</h2>
 <span>Betreiber des Controllers: {controllerAdmin}</span>
